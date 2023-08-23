@@ -60,8 +60,8 @@ all: main-build
 main-build: LED_Blink.elf secondary-outputs
 
 # Tool invocations
-LED_Blink.elf LED_Blink.map: $(OBJS) $(USER_OBJS) E:\Varun\Personal\STM32CubeIDE_Projects\Simple_LED\LED_Blink\STM32F030R8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "LED_Blink.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"E:\Varun\Personal\STM32CubeIDE_Projects\Simple_LED\LED_Blink\STM32F030R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LED_Blink.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+LED_Blink.elf LED_Blink.map: $(OBJS) $(USER_OBJS) ../STM32F030R8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "LED_Blink.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"../STM32F030R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LED_Blink.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
