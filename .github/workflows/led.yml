@@ -1,27 +1,15 @@
-name: C/C++ CI
-
-on:
-  push:
-    branches: [ "CI_check" ]
-  pull_request:
-    branches: [ "CI_check" ]
-
-jobs:
-  build:
-
-    runs-on: self-hosted
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
-    - uses: actions/upload-artifact@v1
-      with:
-        name: LED_$.$_$.zip
-        path: production
+name: 'Build STM32CubeIde project'
+description: 'Build the selected target in an STM32CubeIde project'
+inputs:
+  project-path:  # id of input
+    description: 'Path to STM32CubeIde project'
+    required: true
+  project-target:  # id of input
+    description: 'Which target in the STM32CubeIde project to build'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.project-path }}
+    - ${{ inputs.project-target }}
