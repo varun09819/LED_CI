@@ -9,3 +9,4 @@
 *.su
 *.metadata
 test-results*.xml
+*.cyclo
